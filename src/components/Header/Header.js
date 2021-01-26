@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Navbar, Nav, NavDropdown, Container, Row, Col } from 'react-bootstrap'
+import { Navbar, Nav, NavDropdown, Container, Row, Col } from 'react-bootstrap';
 import {NavLink} from 'react-router-dom';
 
 const Header = () => {
-    const [activeRoute, changeActiveRoute] = useState("/");
+    const [activeRoute, changeActiveRoute] = useState(0);
+    // let activeRoute = 0;
     return (
         <>
             <Container>
@@ -16,19 +17,13 @@ const Header = () => {
                 <Navbar.Brand href="/home">Roy Academy</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="mr-auto" activeKey={`${activeRoute}`}>
-                        <Nav.Link href="/" onSelect={()=>{changeActiveRoute("/")}}>HOME</Nav.Link>
-                        <Nav.Link href="/courses" onSelect={()=>{changeActiveRoute("/courses")}}>COURSES</Nav.Link>
-                        <Nav.Link href="/result" onSelect={()=>{changeActiveRoute("/courses")}}>RESULT</Nav.Link>
-                        <Nav.Link href="/admission" onSelect={()=>{changeActiveRoute("/admission")}}>ADMISSION</Nav.Link>
-                        <Nav.Link href="/contact" onSelect={()=>{changeActiveRoute("/contact")}}>CONTACT US</Nav.Link>
+                    <Nav className="mr-auto" >
+                        <NavLink to="/" onClick={()=>{changeActiveRoute(0); console.log("Clicked!!")}} style={{margin: '0 10px', color:'white', textDecoration: activeRoute===0?"underline":""}}>HOME</NavLink>
+                        <NavLink to="/courses"  onClick={()=>{changeActiveRoute(1)}} style={{margin: '0 10px', color:'white', textDecoration: activeRoute===1?"underline":""}}>COURSES</NavLink>
+                        <NavLink to="/result" onClick={()=>{changeActiveRoute(2)}} style={{margin: '0 10px', color:'white', textDecoration: activeRoute===2?"underline":""}}>RESULT</NavLink>
+                        <NavLink to="/admission" onClick={()=>{changeActiveRoute(3)}} style={{margin: '0 10px', color:'white', textDecoration: activeRoute===3?"underline":""}}>ADMISSION</NavLink>
+                        <NavLink to="/contact" onClick={()=>{changeActiveRoute(4)}} style={{margin: '0 10px', color:'white', textDecoration: activeRoute===4?"underline":""}}>CONTACT US</NavLink>
                     </Nav>
-                    {/* <Nav>
-                        <Nav.Link href="#deets">More deets</Nav.Link>
-                        <Nav.Link eventKey={2} href="#memes">
-                            Dank memes
-                        </Nav.Link>
-                    </Nav> */}
                 </Navbar.Collapse>
             </Navbar>
         </>
